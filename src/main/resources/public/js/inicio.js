@@ -90,10 +90,10 @@ function llenarTablaPersonas(){
 
  
 function actualizar(){
-	var parametros = {"id":$('#personaid').val(),  "nombre": $('#nombre').val() ,"paterno":$('#paterno').val(), "materno":$('#materno').val(),"telefono":$('#telefono').val()};
+	var parametros = {  "nombre": $('#nombre').val() ,"paterno":$('#paterno').val(), "materno":$('#materno').val(),"telefono":$('#telefono').val()};
 	
 	$.ajax({
-		url:"persona/update",
+		url:"persona/update/"+$('#personaid').val(),
 		type:"PUT",
 		dataType:"json",
 		data: JSON.stringify(parametros),
