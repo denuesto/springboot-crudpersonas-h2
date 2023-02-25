@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>Demo Crud con H2 JPA y Thymeleaf</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+<!--     <link href="css/fontawesome-all.css" rel="stylesheet"> -->
+	<link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+    <link href="css/swiper.css" rel="stylesheet">
+	<link href="css/magnific-popup.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	
+</head>
+<body data-spy="scroll" data-target=".fixed-top">
+    
+    <!-- loader -->
+	<div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+    
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
+<!--         <a class="navbar-brand logo-text page-scroll" href="index.html"><img src="images/sura-logo.svg" width="100" alt=""></a> -->
+        
+
+    </nav> 
+    <!-- end of navbar -->
+
+	<div class="mt-4">&nbsp;</div>
+
+
+    <!-- Consulta planes -->
+    <div  class="form-2" id="inicio">
+        <div class="container">
+            <div class="section-title">&nbsp; </div>
+            
+            <div class="row"  id="personas">
+                <div class="col-lg-12">
+                    <div class="text-container">
+                        
+                        
+                        <div class="form-group row">
+                        		<div class="col-10">&nbsp;</div>
+	                        	<div class="col-2">
+                            		<button type="button" id="btnNuevo"  class="btn btn-primary">Nuevo</button>
+                            	 </div>
+	                            <div class="col-8"></div>	
+                        </div>
+                        <h2>Personas</h2>
+                        <div >
+                        	<table class="table" >
+                        		<thead>
+                        			<tr>
+                        				<th>ID</th>
+                        				<th>NOMBRE</th>
+                        				<th>PATERNO</th>
+                        				<th>MATERNO</th>
+                        				<th>TELEFONO</th>
+                        				<th>ACCIONES</th>
+                        			</tr>
+                        		</thead>
+                        		<tbody id="tbodyPersonas">
+                        		<!-- ==========  el contenido se actualiza con la respuesta AJAX en inicio.js ============ -->
+                        		</tbody>
+                        	</table>
+                        	 
+                        </div>
+                    </div> <!-- end of text-container -->                
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            
+            
+        </div> <!-- end of container -->
+    </div> <!-- end of form-2 -->
+    
+	<!-- dialogo  mensaje -->
+	<div class="modal" tabindex="-2" role="dialog" id="modalPersona" aria-hidden="true">
+		<div class="modal-dialog  modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Datos Personales</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="bodyModalPersona">
+					<div  id="modal-error" style="display: none" class="alert alert-danger" role="alert">
+						
+					</div>
+					
+					<p>Los campos marcados con <strong class="obligatorio">(*)</strong> son obligatorios</p> 
+		                            
+                    <form id="personaForm" >
+                    	<input type="hidden"  id="personaid"  name="personaid">
+                    	 
+                        <div class="form-group">
+                            <input type="text" class="form-control-input" id="nombre"  name="nombre" required value="">
+                            <label class="label-control" for="nombre"><strong class="obligatorio">*</strong>Nombre</label>
+                            <div class="help-block with-errors"></div>
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control-input" id="paterno"  name="paterno" required value="">
+                            <label class="label-control" for="paterno"><strong class="obligatorio">*</strong>Paterno</label>
+                            <div class="help-block with-errors"></div>
+                        </div> 
+                         <div class="form-group">
+                            <input type="text" class="form-control-input" id="materno"  name="materno" required value="">
+                            <label class="label-control" for="materno"><strong class="obligatorio">*</strong>Materno</label>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control-input" id="telefono"  name="telefono" required value="">
+                            <label class="label-control" for="telefono"><strong class="obligatorio">*</strong>Celular/Tel.</label>
+                            <div class="help-block with-errors"></div>
+                        </div>		
+                    </form>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" id="btnGuardar" >Guardar</button>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- fin de dialogo -->
+    	
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="js/scripts.js"></script>
+    <script src="js/inicio.js"></script> 
+</body>
+</html>
