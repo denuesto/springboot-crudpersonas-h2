@@ -1,6 +1,8 @@
 package com.demo.crud.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,10 +50,10 @@ public class PersonaController {
 		
 	}
 	
-	@PutMapping("/update")
-	public ResponseEntity<?> update(@RequestBody Persona persona) {
+	@PutMapping("/update/{id}")
+	public ResponseEntity<?> update(@RequestBody Persona persona, @PathVariable("id" )Long id) {
 		
-		Persona personaNuevo = personaService.update(persona);
+		Persona personaNuevo = personaService.update(persona,id);
 		return new ResponseEntity<Persona>(personaNuevo, HttpStatus.OK);
 		
 	}
@@ -59,9 +61,11 @@ public class PersonaController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		String mensaje = "elemento eliminado";
+		Map<String,String> hm = new HashMap<>();
+		hm.put("msg",mensaje);
 		
 		personaService.deleteById(id);
-		return new ResponseEntity<String>(mensaje, HttpStatus.OK);
+		return new ResponseEntity<>(hm, HttpStatus.OK);
 		
 	}
 

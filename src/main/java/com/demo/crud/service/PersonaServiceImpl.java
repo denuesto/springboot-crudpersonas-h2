@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.demo.crud.dao.PersonaRepository;
 import com.demo.crud.entity.Persona;
+import com.demo.crud.exception.ResourceNotFoundException;
 
 @Service
 public class PersonaServiceImpl implements PersonaService {
@@ -18,7 +19,7 @@ public class PersonaServiceImpl implements PersonaService {
 	@Override
 	public Persona findById(Long id) {
 		
-		return personaRepository.findById(id).orElse(null);
+		return personaRepository.findById(id).orElseThrow( () -> new ResourceNotFoundException("No se encontró el registro") );
 	}
 
 	@Override
@@ -34,9 +35,9 @@ public class PersonaServiceImpl implements PersonaService {
 	}
 	
 	@Override
-	public Persona update(Persona persona) {
+	public Persona update(Persona persona,Long id) {
 		Persona personaAnterior  = null;
-		 Optional<Persona> personaOptional = personaRepository.findById(persona.getId());
+		 Optional<Persona> personaOptional = personaRepository.findById(id);
 		 if( personaOptional.isPresent()) {
 			 personaAnterior = personaOptional.get();
 			 personaAnterior.setNombre(persona.getNombre());
@@ -45,6 +46,8 @@ public class PersonaServiceImpl implements PersonaService {
 			 personaAnterior.setTelefono(persona.getTelefono());
 			 
 			 personaRepository.save(personaAnterior);
+		 }else {
+			   throw new ResourceNotFoundException("No se encontró el registro");
 		 }
 		 
 		 return personaAnterior;
@@ -57,7 +60,9 @@ public class PersonaServiceImpl implements PersonaService {
 		if( personaOptional.isPresent()) {
 			persona = personaOptional.get();
 			personaRepository.delete(persona);
-		}
+		}else {
+			   throw new ResourceNotFoundException("No se encontró el registro");
+		 }
 
 	}
 

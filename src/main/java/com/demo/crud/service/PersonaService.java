@@ -12,7 +12,7 @@ public interface PersonaService {
 	
 	Persona save(Persona persona);
 	
-	Persona update(Persona persona);
+	Persona update(Persona persona,Long id);
 	
 	void deleteById(Long id);
 
